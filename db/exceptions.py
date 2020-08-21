@@ -1,0 +1,2 @@
+class NotValidDialect(Exception):
+    pass

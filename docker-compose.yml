@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  shortener:
+    build:
+      context: .
+    environment:
+      MODE: development
+      FLASK_DEBUG: 1
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - "5000:5000"
+
+  postgres:
+    image: postgres:12-alpine
+    environment:
+      POSTGRES_USER: shortener
+      POSTGRES_PASSWORD: shortener
+      POSTGRES_DB: shortener
+
+  redis:
+    image: redis:alpine
